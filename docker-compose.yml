@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+ db:
+  build: ./postgres/
+  restart: always
+  environment:
+   POSTGRES_PASSWORD: devvydev
+   POSTGRES_USER: dev
+   POSTGRES_DB: jeopardy
+  ports:
+   - 5432:5432  
+ scraper:
+  build: .
+  network_mode: "host"
+  depends_on:
+   - db
